@@ -1,0 +1,7 @@
+{
+  "name": "fcme",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
