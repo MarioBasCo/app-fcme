@@ -1,3 +1,6 @@
+import { ClientModule } from './../../components/client/client.module';
+import { AdminModule } from './../../components/admin/admin.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -12,6 +15,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
+    AdminModule,
+    ClientModule,
     HomePageRoutingModule
   ],
   declarations: [HomePage]

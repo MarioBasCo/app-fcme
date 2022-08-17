@@ -1,0 +1,61 @@
+<ion-menu side="end" menuId="primerMenu" contentId="principal" swipeGesture="false">
+  <ion-header class="ion-no-border">
+    <ion-toolbar class="cabecera">
+      <ion-title class="ion-text-center">Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list lines="full">
+      <ion-menu-toggle>
+        <ion-item routerDirection="root" routerLink="/home" routerLinkActive="selected">
+          <ion-icon slot="start" name="home" color="gray"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item routerDirection="root" routerLink="/loans" routerLinkActive="selected">
+          <ion-icon slot="start" name="wallet" color="gray"></ion-icon>
+          <ion-label>Préstamos y Requisitos</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item routerDirection="root" routerLink="/requests" routerLinkActive="selected">
+          <ion-icon slot="start" name="folder-open" color="gray"></ion-icon>
+          <ion-label>Mis Solicitudes</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item routerDirection="root" routerLink="/receipts" routerLinkActive="selected">
+          <ion-icon slot="start" name="receipt" color="gray"></ion-icon>
+          <ion-label>Pagos y Recibos</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-row class="logout">
+          <ion-col class="ion-text-center">
+            <ion-button color="gray" expand="block" class="ion-margin-horizontal btn-logout" (click)="cerrarSesion()">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>
+                Cerrar Sesión
+              </ion-label>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar color="night">
+      <div class="ion-text-center">
+        <ion-label>© 2022, FCME APP</ion-label>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-menu>

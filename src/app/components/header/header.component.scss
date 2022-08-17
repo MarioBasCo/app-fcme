@@ -1,0 +1,12 @@
+.custom-font {
+    font-family: 'Finlandica', sans-serif;
+}
+
+ion-toolbar {
+    --background: transparent;
+
+    ion-title {
+        padding: 24px 0 24px 0;
+        font-weight: 900;
+    }
+}

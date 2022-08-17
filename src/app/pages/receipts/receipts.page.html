@@ -1,0 +1,22 @@
+<app-header titulo="Pagos y Recibos"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      <ion-label class="ion-text-center">TRANSACCIONES RECIENTES</ion-label>
+    </ion-list-header>
+    <ion-item lines="none" color="transparent" *ngFor="let item of transactions">
+      <div class="card ion-margin-bottom">
+        <ion-item lines="none" color="transparent">
+          <ion-icon slot="start" name="cash" color="gray"></ion-icon>
+        <ion-label size="large" class="ion-text-wrap">
+          <b>{{item.vendor}}</b>
+          <p>
+            {{item?.time}}
+          </p>
+        </ion-label>
+        <ion-text slot="end" [color]="item?.amount > 0 ? 'night' : 'gray'">${{item?.amount}}</ion-text>
+        </ion-item>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

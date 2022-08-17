@@ -1,0 +1,63 @@
+<div class="ion-padding-start ion-padding-end">
+  <swiper [spaceBetween]="30" [config]="config" [effect]="'fade'" [pagination]="{
+    clickable: true
+  }" class="banner-slides" #swiper (swiper)="setSwiperInstance($event)">
+    <ng-template swiperSlide>
+      <ion-card class="card-req">
+        <ion-card-header>
+          <ion-card-title>Accede a préstamos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img src="./../../../assets/icon/pedir-prestado.png">
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card class="card-req">
+        <ion-card-header>
+          <ion-card-title>Pocos Requisitos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img src="./../../../assets/icon/contrato.png">
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card class="card-req">
+        <ion-card-header>
+          <ion-card-title>Recibe Beneficios</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img src="./../../../assets/icon/bienestar.png">
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </swiper>
+</div>
+<div class="ion-padding">
+  <h3><strong>Accede a Préstamos</strong></h3>
+  <p class="ion-text-justify">Forma parte de nuestros procesos de afiliaciones para acceder a préstamos, créditos para
+    la compra de vehículos, casa, etc.</p>
+  <ion-accordion-group value="'first'">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Tipos de Préstamos</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">First Content</div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <h3><strong>Sube tus documentos</strong></h3>
+  <p class="ion-text-justify">Para solictar nuestros productos necesitarás pocos requisitos, los cuáles serán recibidos
+    a traves de esta aplicación.</p>
+
+  <h3><strong>Recibe Beneficios</strong></h3>
+  <p class="ion-text-justify">Para solictar nuestros productos necesitarás pocos requisitos, los cuáles serán recibidos
+    a traves de esta aplicación.</p>
+
+  <ion-item color="transparent" lines="none">
+    <ion-icon slot="end" name="logo-whatsapp" color="success"></ion-icon>
+    <ion-label>¿Necesitas asesoría?</ion-label>
+  </ion-item>
+  <!-- <a href="https://wa.me/+593968556635?text=Hello%20World ">WhatsApp</a>  -->
+</div>

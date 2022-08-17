@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="container">
+    <div class="upper">
+      <div class="icon">
+        <img src="assets/icon/dividendos.png">
+        <h1 class="titulo">FC<span>ME</span> APP</h1>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="box">
+        <form>
+          <p>Por favor, Ingrese las credenciales de su Cuenta</p>
+          <ion-item lines="none" color="transparent" class="ion-margin-vertical">
+            <ion-label position="floating">Correo Electrónico</ion-label>
+            <ion-input type="email" placeholder="Correo Electrónico" inputmode="email">
+            </ion-input>
+            <ion-icon class="ion-align-self-center" slot="end" name="mail"></ion-icon>
+          </ion-item>
+  
+          <ion-item lines="none" color="transparent" class="ion-margin-vertical">
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [type]="showPassword ? 'text': 'password'" placeholder="Contraseña" inputmode="email">
+            </ion-input>
+            <ion-icon class="ion-align-self-center" slot="end" [name]="passwordToggleIcon"
+            (click)="togglePassword()"></ion-icon>
+          </ion-item>
+  
+          <div class="btn-lg">
+            <ion-button expand="block" color="gray" (click)="ingresar()">Ingresar</ion-button>
+          </div>
+        </form>
+      </div>
+
+      <div class="reg">
+        <p>
+          <a routerLink="/sign">Registrarse</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>

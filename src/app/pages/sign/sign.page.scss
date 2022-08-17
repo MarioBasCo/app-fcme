@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Finlandica&display=swap');
+
+ion-content {
+    --background: #F0F5F9;
+    //min-height: 100%;
+}
+
+ion-toolbar {
+    --background: #F0F5F9;
+}
+
+.sign-container {
+    //background-color: #C9D6DF;
+    border-radius: 15px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-reg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 70px;
+    }
+}
+
+.title {
+    color: var(--ion-color-gray);
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+}
+
+.sign-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 100%;
+    position: relative; 
+}
+
+ion-icon {
+    color: var(--ion-color-gray);
+}
+
+ion-item {
+    border: 1px solid var(--ion-color-night);
+    border-radius: 5px;
+    width: 100%;
+    ion-label, ion-input {
+        color: var(--ion-color-night) !important;
+        font-family: 'Finlandica', sans-serif;
+    }
+}
+
+ion-input {
+    width: 100%;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    --padding-top: 20px;
+    --padding-bottom: 15px;
+    --padding-start: 5px;
+}
+
+.btn-reg {
+    width: 100%;
+    height: 44px;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+.sing{
+    padding-top: 20px;
+    //color: var(--ion-color-gray);
+    a {
+        color: var(--ion-color-gray);
+        text-decoration: none;
+    }
+}
