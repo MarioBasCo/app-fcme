@@ -1,3 +1,5 @@
+import { LoanService } from './../../services/loan.service';
+import { FrequencyService } from './../../services/frequency.service';
 import { ApplyLoanComponent } from './../../components/apply-loan/apply-loan.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,29 +12,29 @@ import { AnimationController, ModalController } from '@ionic/angular';
 })
 export class LoansPage implements OnInit {
   form: FormGroup;
-  loans: any[] = [
-    { id: 1, vendor: 'Consumo', value: 0.08 },
-    { id: 2, vendor: 'Microcredito', value: 0.12 },
-    { id: 3, vendor: 'Vivienda', value: 0.15 },
-    { id: 4, vendor: 'Vehiculo', value: 0.17 },
-  ];
-  frequency: any[] = [
-    { id: 1, vendor: 'Mensual', value: 12 },
-    { id: 2, vendor: 'Bimensual', value: 6 },
-    { id: 3, vendor: 'Trimestral', value: 4 },
-    { id: 4, vendor: 'Cuatrimestral', value: 3 },
-    { id: 5, vendor: 'Semestral', value: 2 },
-    { id: 6, vendor: 'Anual', value: 1 }
-  ];
+  loans: any[] = [];
+  frequency: any[] = [];
   tableLoan: any[] = [];
 
   constructor(
     private animationCtrl: AnimationController,
     private formBuilder: FormBuilder,
+    private serFre: FrequencyService,
+    private serLoan: LoanService,
     private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.buildForm();
+    this.serFre.getFrecuency().subscribe(resp => {
+      if(resp.status) {
+        this.frequency = resp.data;
+      }
+    });
+    this.serLoan.getLoan().subscribe(resp => {
+      if(resp.status) {
+        this.loans = resp.data;
+      }
+    });
   }
 
   enterAnimation = (baseEl: HTMLElement) => {
@@ -73,11 +75,12 @@ export class LoansPage implements OnInit {
   }
 
   calcular() {
-    const {value : interes} = this.loans.find(element => element.id == this.form.get('loan').value); // valor del interes anual
-    const {value : frecu} = this.frequency.find(element => element.id == this.form.get('frequency').value); //fruecuencia de pagos
+    this.tableLoan = [];
+    const {valor : interesAnual} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value); // valor del interes anual
+    const {valor : frecu} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value); //fruecuencia de pagos
     const numCuotas = this.form.get('share').value; // número de cuotas que el cliente pidió
     const monto = this.form.get('amount').value; // capital a prestar
-    const n = interes / frecu; // interes efectivo
+    const n = interesAnual / frecu; // interes efectivo
 
     const ixt = Math.pow(((1 + n)), numCuotas); // interes por el numero de cuotas
     const cuotasPago = monto * (n * ixt) / (ixt - 1);
@@ -103,19 +106,19 @@ export class LoansPage implements OnInit {
   }
 
   async openModalForm() {
-    const {value : interes} = this.loans.find(element => element.id == this.form.get('loan').value); // valor del interes anual
-    const {value : frecu} = this.frequency.find(element => element.id == this.form.get('frequency').value); //fruecuencia de pagos
+    const {value : interesAnual} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value); // valor del interes anual
+    const {valor : frecu} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value); //fruecuencia de pagos
     const numCuotas = this.form.get('share').value; // número de cuotas que el cliente pidió
     const monto = this.form.get('amount').value; // capital a prestar
-    const n = interes / frecu; // interes efectivo
+    const n = interesAnual / frecu; // interes efectivo
 
     const ixt = Math.pow(((1 + n)), numCuotas); // interes por el numero de cuotas
     const cuotasPago = monto * (n * ixt) / (ixt - 1);
-    const {vendor : detallePre} = this.loans.find(element => element.id == this.form.get('loan').value);
-    const {vendor : detalleFre} = this.frequency.find(element => element.id == this.form.get('frequency').value);
+    const {descripcion : detallePre} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value);
+    const {descripcion : detalleFre} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value);
     const data = {
       monto,
-      interes,
+      interes: interesAnual,
       tipoPrestampo: detallePre,
       frecuencia: detalleFre,
       cuotas: numCuotas,

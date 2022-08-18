@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
@@ -7,17 +8,17 @@ import { __classPrivateFieldGet } from 'tslib';
   providedIn: 'root'
 })
 export class LoginService {
-  private URL_API: string = 'http://localhost/fcme/';
+  private URL_API: string = environment.webService;
 
-  constructor(private http:HttpClient, private serUtil: UtilsService) { }
+  constructor(private http: HttpClient, private serUtil: UtilsService) { }
 
-  fun_login(data:any){
-    let URL= this.URL_API+"login";
-    return this.http.post<any>(URL,this.serUtil.objectToFormData(data));
+  fun_login(data: any) {
+    let URL = this.URL_API + "/login";
+    return this.http.post<any>(URL, this.serUtil.objectToFormData(data));
   }
 
-  registro(data: any){
-    const URL = this.URL_API + "singup";
+  registro(data: any) {
+    const URL = this.URL_API + "/singup";
     return this.http.post<any>(URL, this.serUtil.objectToFormData(data));
   }
 }

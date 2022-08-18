@@ -25,7 +25,7 @@
           <ion-col>
             <ion-item lines="none" color="platinum" class="item-form">
               <ion-select placeholder="Tipo de Préstamo" interface="popover" name="loan" formControlName="loan">
-                <ion-select-option *ngFor="let loan of loans" [value]="loan.id">{{loan.vendor}}</ion-select-option>
+                <ion-select-option *ngFor="let loan of loans" [value]="loan.idTipoPrestamo">{{loan.descripcion}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -38,7 +38,7 @@
           <ion-col>
             <ion-item lines="none" color="platinum" class="item-form">
               <ion-select placeholder="Frecuencia de Pago" interface="popover" name="frequency" formControlName="frequency">
-                <ion-select-option *ngFor="let fre of frequency" [value]="fre.id">{{fre.vendor}}</ion-select-option>
+                <ion-select-option *ngFor="let fre of frequency" [value]="fre.idFrecuencia">{{fre.descripcion}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
