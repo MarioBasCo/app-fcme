@@ -2,7 +2,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ApplyLoanComponent } from './apply-loan.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 
@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
     IonicModule,
     ReactiveFormsModule
   ],
-  exports: [ApplyLoanComponent]
+  exports: [ApplyLoanComponent],
+  providers: [DatePipe]
 })
 export class ApplyLoanModule { }

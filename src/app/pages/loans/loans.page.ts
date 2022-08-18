@@ -26,12 +26,12 @@ export class LoansPage implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.serFre.getFrecuency().subscribe(resp => {
-      if(resp.status) {
+      if (resp.status) {
         this.frequency = resp.data;
       }
     });
     this.serLoan.getLoan().subscribe(resp => {
-      if(resp.status) {
+      if (resp.status) {
         this.loans = resp.data;
       }
     });
@@ -76,8 +76,8 @@ export class LoansPage implements OnInit {
 
   calcular() {
     this.tableLoan = [];
-    const {valor : interesAnual} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value); // valor del interes anual
-    const {valor : frecu} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value); //fruecuencia de pagos
+    const { valor: interesAnual } = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value); // valor del interes anual
+    const { valor: frecu } = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value); //fruecuencia de pagos
     const numCuotas = this.form.get('share').value; // número de cuotas que el cliente pidió
     const monto = this.form.get('amount').value; // capital a prestar
     const n = interesAnual / frecu; // interes efectivo
@@ -93,7 +93,7 @@ export class LoansPage implements OnInit {
       i = vf * n;
       aporte = cuotasPago - i;
       saldo = vf - aporte;
-      this.tableLoan.push({ cuota: Number(cuotasPago.toFixed(2)), aporte: Number(aporte.toFixed(2)), interes: Number(i.toFixed(2)), saldo: Math.abs(Number(saldo?.toFixed(2))) })
+      this.tableLoan.push({ cuota: cuotasPago.toFixed(2), aporte: Number(aporte.toFixed(2)), interes: Number(i.toFixed(2)), saldo: Math.abs(Number(saldo?.toFixed(2))) })
       //console.log(`cuota: ${cuotasPago.toFixed(2)}, aporte: ${aporte.toFixed(2)}, interes: ${i.toFixed(2)}, saldo: ${saldo.toFixed(2)}`);
       vf = saldo;
     }
@@ -106,23 +106,27 @@ export class LoansPage implements OnInit {
   }
 
   async openModalForm() {
-    const {value : interesAnual} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value); // valor del interes anual
-    const {valor : frecu} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value); //fruecuencia de pagos
+    const id_prestamo = this.form.get('loan').value;
+    const { valor: interesAnual } = this.loans.find(element => element.idTipoPrestamo == id_prestamo); // valor del interes anual
+    const id_frecuencia = this.form.get('frequency').value;
+    const { valor: frecu } = this.frequency.find(element => element.idFrecuencia == id_frecuencia); //fruecuencia de pagos
     const numCuotas = this.form.get('share').value; // número de cuotas que el cliente pidió
     const monto = this.form.get('amount').value; // capital a prestar
     const n = interesAnual / frecu; // interes efectivo
 
     const ixt = Math.pow(((1 + n)), numCuotas); // interes por el numero de cuotas
     const cuotasPago = monto * (n * ixt) / (ixt - 1);
-    const {descripcion : detallePre} = this.loans.find(element => element.idTipoPrestamo == this.form.get('loan').value);
-    const {descripcion : detalleFre} = this.frequency.find(element => element.idFrecuencia == this.form.get('frequency').value);
+    const { descripcion: detallePre } = this.loans.find(element => element.idTipoPrestamo == id_prestamo);
+    const { descripcion: detalleFre } = this.frequency.find(element => element.idFrecuencia == id_frecuencia);
+    console.log(cuotasPago)
     const data = {
       monto,
       interes: interesAnual,
-      tipoPrestampo: detallePre,
-      frecuencia: detalleFre,
+      tipoPrestampo: { id_prestamo, detallePre },
+      frecuencia: { id_frecuencia, detalleFre },
       cuotas: numCuotas,
-      cuotaPago: cuotasPago
+      cuotaPago: cuotasPago.toFixed(2),
+      pagos: this.tableLoan
     }
 
     const modal = await this.modalCtrl.create({
