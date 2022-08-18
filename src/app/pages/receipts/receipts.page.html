@@ -6,16 +6,18 @@
     </ion-list-header>
     <ion-item lines="none" color="transparent" *ngFor="let item of transactions">
       <div class="card ion-margin-bottom">
-        <ion-item lines="none" color="transparent">
+        <ion-item lines="none" color="transparent" [disabled]="item?.state == 'T' ? false : true">
           <ion-icon slot="start" name="cash" color="gray"></ion-icon>
-        <ion-label size="large" class="ion-text-wrap">
-          <b>{{item.vendor}}</b>
-          <p>
-            {{item?.time}}
-          </p>
-        </ion-label>
-        <ion-text slot="end" [color]="item?.amount > 0 ? 'night' : 'gray'">${{item?.amount}}</ion-text>
+          <ion-label size="large" class="ion-text-wrap">
+            <b>{{item.vendor}}</b>
+            <p>
+              <span style="color: green;">+ {{item?.time}}</span> &nbsp; <span style="color: red;">-
+                {{item?.image}}</span>
+            </p>
+          </ion-label>
+          <ion-text slot="end" color="gray">${{item?.amount}}</ion-text>
         </ion-item>
+
       </div>
     </ion-item>
   </ion-list>
