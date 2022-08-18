@@ -12,14 +12,14 @@
           <p>Por favor, Ingrese las credenciales de su Cuenta</p>
           <ion-item lines="none" color="transparent" class="ion-margin-vertical">
             <ion-label position="floating">Correo Electrónico</ion-label>
-            <ion-input type="email" placeholder="Correo Electrónico" inputmode="email">
+            <ion-input type="email" placeholder="Correo Electrónico" inputmode="email" name="email" [(ngModel)]="email">
             </ion-input>
             <ion-icon class="ion-align-self-center" slot="end" name="mail"></ion-icon>
           </ion-item>
   
           <ion-item lines="none" color="transparent" class="ion-margin-vertical">
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input [type]="showPassword ? 'text': 'password'" placeholder="Contraseña" inputmode="email">
+            <ion-input [type]="showPassword ? 'text': 'password'" placeholder="Contraseña" inputmode="email" name="clave" [(ngModel)]="clave">
             </ion-input>
             <ion-icon class="ion-align-self-center" slot="end" [name]="passwordToggleIcon"
             (click)="togglePassword()"></ion-icon>

@@ -10,6 +10,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-client></app-client>
-  <!-- <app-admin></app-admin> -->
+  <app-admin *ngIf="perfil === 1"></app-admin> 
+  <app-client *ngIf="perfil === 2"></app-client>
 </ion-content>

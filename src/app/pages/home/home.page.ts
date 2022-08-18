@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LstorageService } from 'src/app/services/lstorage.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {
+  perfil:number;
+  constructor( private serUtil:UtilsService,private serStorage:LstorageService) {
 
   }
+
+  ngOnInit() {
+    this.perfil=this.serStorage.get("user").perfil; 
+  }
+  
 }

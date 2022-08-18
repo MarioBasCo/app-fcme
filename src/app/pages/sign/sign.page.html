@@ -18,7 +18,7 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Cedula</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="id-card"></ion-icon>
-          <ion-input type="text" placeholder="Cedula" name="cedula" required></ion-input>
+          <ion-input type="text" placeholder="Cedula" name="cedula" [(ngModel)]="objUser.cedula" required></ion-input>
         </ion-item>
       </div>
 
@@ -26,7 +26,7 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Nombres</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="person"></ion-icon>
-          <ion-input type="text" placeholder="Nombres" name="nombre" required></ion-input>
+          <ion-input type="text" placeholder="Nombres" name="nombre"  [(ngModel)]="objUser.nombre" required></ion-input>
         </ion-item>
       </div>
 
@@ -34,7 +34,7 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Apellidos</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="person"></ion-icon>
-          <ion-input type="text" placeholder="Apellidos" name="apellido" required></ion-input>
+          <ion-input type="text" placeholder="Apellidos" name="apellido" name="apeliido" [(ngModel)]="objUser.apellido" required></ion-input>
         </ion-item>
       </div>
 
@@ -42,15 +42,16 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Correo Electrónico</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="mail"></ion-icon>
-          <ion-input type="email" placeholder="Correo Electrónico" name="correo" required></ion-input>
+          <ion-input type="email" placeholder="Correo Electrónico" name="email"  [(ngModel)]="objUser.email" required></ion-input>
         </ion-item>
       </div>
 
       <div class="ion-margin-bottom">
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" placeholder="Contraseña" name="clave" required></ion-input>
-          <ion-icon slot="end" class="ion-align-self-center" name="eye-off">
+          <ion-input [type]="showPassword ? 'text': 'password'" placeholder="Contraseña" name="clave"  [(ngModel)]="objUser.clave"  required></ion-input>
+          <ion-icon slot="end" class="ion-align-self-center"[name]="passwordToggleIcon"
+          (click)="togglePassword()" >
           </ion-icon>
         </ion-item>
       </div>
@@ -59,7 +60,7 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Teléfono</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="call"></ion-icon>
-          <ion-input type="tel" placeholder="Teléfono" name="telefono"></ion-input>
+          <ion-input type="tel" placeholder="Teléfono" name="telefono"  [(ngModel)]="objUser.telefono"></ion-input>
         </ion-item>
       </div>
 
@@ -67,11 +68,11 @@
         <ion-item lines="none" color="transparent" class="form-control">
           <ion-label position="floating">Dirección</ion-label>
           <ion-icon slot="end" class="ion-align-self-center" name="location"></ion-icon>
-          <ion-input type="text" placeholder="Dirección" name="direccion"></ion-input>
+          <ion-input type="text" placeholder="Dirección" name="direccion"  [(ngModel)]="objUser.direccion"></ion-input>
         </ion-item>
       </div>
 
-      <ion-button type="submit" color="gray" expand="block" class="btn-reg" [disabled]="formulario.invalid">Registrarse</ion-button>
+      <ion-button type="submit" color="gray" expand="block" class="btn-reg" [disabled]="formulario.invalid" (click)="registrarse()">Registrarse</ion-button>
     </form>
 
     <div class="ion-text-center sing">
