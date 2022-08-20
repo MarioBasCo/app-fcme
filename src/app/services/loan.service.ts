@@ -22,4 +22,9 @@ export class LoanService {
     const url = this.path_url + '/prestamo';
     return this.http.post<any>(url, this.serUtil.objectToFormData(data));
   }
+
+  getLoanById(id: any){
+    const url = this.path_url + '/prestamocliente/' + id;
+    return this.http.get<any>(url);
+  }
 }

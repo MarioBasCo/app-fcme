@@ -1,3 +1,4 @@
+import { LoanService } from './../../services/loan.service';
 import { Component, OnInit, ViewChild, ViewEncapsulation, AfterContentChecked } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Pagination, Autoplay, EffectFade, SwiperOptions, Swiper } from "swiper";
@@ -16,11 +17,17 @@ export class ClientComponent implements OnInit, AfterContentChecked {
     spaceBetween: 30,
     loop: true
   };
+  loans : any[] = [];
 
-  constructor() { }
+  constructor(private serLoan: LoanService) { }
 
   ngOnInit() {
     SwiperCore.use([Autoplay, Pagination, EffectFade]);
+    this.serLoan.getLoan().subscribe(resp => {
+      if(resp.status){
+        this.loans = resp.data;
+      }
+    })
   }
 
   ngAfterContentChecked() {

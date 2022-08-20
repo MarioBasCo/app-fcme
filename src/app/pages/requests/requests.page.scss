@@ -2,27 +2,14 @@ ion-content {
     --background: var(--ion-color-platinum);
 }
 
-ion-header {
-    background: transparent;
-
-    ion-item {
-        --background: transparent;
-
-        ion-avatar {
-            background: white;
-        }
-    }
-}
-
-
 .main-header {
-    height: 45vh;
+    height: 15vh;
     width: 150%;
-    background: linear-gradient(90deg, var(--ion-color-tertiary) 10%, var(--ion-color-primary) 100%);
+    background: linear-gradient(90deg, var(--ion-color-gray) 10%, var(--ion-color-night) 100%);
     box-shadow: 0 1px 10px var(--ion-color-light);
     border-radius: 0 0 50% 50%;
     margin-left: -14vh;
-    margin-top: -60px;
+    margin-top: -10px;
 }
 
 ion-grid {
@@ -30,8 +17,8 @@ ion-grid {
     position: absolute;
     top: 0;
     left: 0;
-    transform: translateY(10vh);
-    padding-bottom: 8vh;
+    transform: translateY(2vh);
+    padding-bottom: 2vh;
 
     ion-row {
         ion-col {

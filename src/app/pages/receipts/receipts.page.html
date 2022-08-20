@@ -1,21 +1,33 @@
 <app-header titulo="Pagos y Recibos"></app-header>
 <ion-content [fullscreen]="true">
   <ion-list>
+    <ion-item>
+      <ion-select interface="action-sheet" placeholder="Seleccione el préstamo" cancelText="Cancelar" okText="Aceptar"
+        (ionChange)="cargarCuotas($event)">
+        <ion-select-option *ngFor="let item of mispagos;" [value]="item.idPrestamo">Prestamo del {{item.fechaSolicitud}}
+          &nbsp;
+          {{item.monto | currency: 'USD' }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="transactions.length > 0">
     <ion-list-header>
       <ion-label class="ion-text-center">TRANSACCIONES RECIENTES</ion-label>
     </ion-list-header>
-    <ion-item lines="none" color="transparent" *ngFor="let item of transactions">
+    <ion-item lines="none" *ngFor="let item of transactions; let i = index;">
       <div class="card ion-margin-bottom">
-        <ion-item lines="none" color="transparent" [disabled]="item?.state == 'T' ? false : true">
-          <ion-icon slot="start" name="cash" color="gray"></ion-icon>
+        <ion-item lines="none" color="transparent" [disabled]="item?.estado == 'T' ? false : true">
+          <ion-icon slot="start" name="cash" color="success"></ion-icon>
           <ion-label size="large" class="ion-text-wrap">
-            <b>{{item.vendor}}</b>
+            <b>N° Cuota: {{i+1}}</b>
             <p>
-              <span style="color: green;">+ {{item?.time}}</span> &nbsp; <span style="color: red;">-
-                {{item?.image}}</span>
+              <span style="color: green;">+ {{item?.aporte}}</span> &nbsp; <span style="color: red;">-
+                {{item?.interes}}</span>
             </p>
           </ion-label>
-          <ion-text slot="end" color="gray">${{item?.amount}}</ion-text>
+          <ion-text slot="end" color="gray">$ {{item?.saldo | number : '1.2-2'}}</ion-text>
         </ion-item>
 
       </div>

@@ -1,3 +1,5 @@
+import { LstorageService } from './../../services/lstorage.service';
+import { PaymentService } from './../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,14 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./receipts.page.scss'],
 })
 export class ReceiptsPage implements OnInit {
-  transactions: any[] = [
-    {id: 1, vendor: 'Cuota N° 1', image: '33.33', amount: 4598.39, time: '401.61', state: 'T'},
-    {id: 2, vendor: 'Pago del primer mes', image: '', amount: -1200, time: '4:00PM', state: 'I'}
-  ];
+  transactions: any[] = [];
 
-  constructor() { }
+  mispagos: any[] = [];
+
+  constructor(
+    private serStorge: LstorageService,
+    private serPay: PaymentService) { }
 
   ngOnInit() {
+    let id_usuario = this.serStorge.get('user')?.id_usuario;
+    this.serPay.getPagosByIdUser(id_usuario).subscribe(resp => {
+      if (resp.status) {
+        this.mispagos = resp.data;
+      }
+    })
   }
 
+  cargarCuotas(event) {
+    let id = event.detail.value;
+    this.transactions = [];
+    this.serPay.getCuotasById(id).subscribe(resp => {
+      if (resp.status) {
+        this.transactions = resp.data;
+      }
+    })
+  }
 }

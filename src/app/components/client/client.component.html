@@ -43,7 +43,7 @@
       <ion-item slot="header" color="light">
         <ion-label>Tipos de Préstamos</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">First Content</div>
+      <div class="ion-padding" slot="content" *ngFor="let loan of loans">{{loan.descripcion}}&nbsp;{{loan.valor*100}}% Interés Anual</div>
     </ion-accordion>
   </ion-accordion-group>
 

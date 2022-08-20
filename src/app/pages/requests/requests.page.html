@@ -8,64 +8,42 @@
     <ion-row>
       <ion-col size="6">
         <ion-label>
-          <ion-note color="light" class="ion-margin-start">
-            CARD BALANCE
-          </ion-note>
+          <ion-text color="platinum" class="ion-margin-start">
+            Monto General
+          </ion-text>
           <p>
-            <ion-chip color="light">
+            <ion-chip color="lightgray">
               <ion-label class="ion-text-wrap">
-                ₹11205000
+                $ {{montoGeneral | number : '1.2-2'}}
               </ion-label>
             </ion-chip>
           </p>
         </ion-label>
       </ion-col>
       <ion-col size="6" class="ion-text-end">
-        <ion-button color="light" size="small">
-          <ion-text color="primary">Top Up</ion-text>
+        <ion-button color="platinum" size="small">
+          <span>Añadir más</span>
           <ion-icon name="add" color="primary" slot="end"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-margin-horizontal ion-margin-top">
-      <ion-col>
-        <ion-label color="light">
-          <b>All features</b>
-        </ion-label>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="ion-margin-horizontal">
-      <ion-col *ngFor="let item of features" size="6">
-        <ion-card class="ion-text-center">
-          <ion-card-header>
-            <div align="center">
-              <ion-thumbnail [style.background]="item?.background">
-                <img [src]="item?.src" />
-              </ion-thumbnail>
-            </div>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-label color="dark">{{ item?.name }}</ion-label>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
+    <div class="ion-margin-top"><br></div>
     <ion-list>
-      <ion-list-header>
+      <!-- <ion-list-header>
         <ion-label>RECENT TRANSACTIONS</ion-label>
-      </ion-list-header>
-      <ion-item lines="none" *ngFor="let item of transactions">
-        <ion-icon slot="start" name="cash" color="primary"></ion-icon>
+      </ion-list-header> -->
+      <ion-item lines="none" *ngFor="let item of loans">
+        <!-- <ion-icon slot="start" name="cash" color="primary"></ion-icon> -->
         <ion-label size="large" class="ion-text-wrap">
-          <b>{{item.vendor}}</b>
+          <b>Préstamo por {{item.prestamo}}</b>
           <p>
-            {{item?.time}}
+            <ion-text style="font-size: 1.33em;" color="primary">Valor de cada cuota: {{item?.cuotaPago | currency: 'USD'}}</ion-text><br>
+            Interes Anual: {{item?.interes | number : '1.2-2'}} % <br>
+            Num Cuotas: {{item?.numCuotas}} con frecuencia de pago: {{item?.frecuencia}} <br>
           </p>
         </ion-label>
-        <ion-text slot="end" [color]="item?.amount > 0 ? 'success' : 'danger'">₹{{item?.amount}}</ion-text>
+        <ion-text slot="end" color="nigth">{{item.monto | currency: 'USD'}}</ion-text>
       </ion-item>
     </ion-list>
   </ion-grid>
