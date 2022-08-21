@@ -8,12 +8,12 @@
     <ion-row>
       <ion-col size="6">
         <ion-label>
-          <ion-text color="platinum" class="ion-margin-start">
-            Monto General
+          <ion-text color="platinum" class="ion-margin-start ion-text-wrap">
+            Monto Preaprobado
           </ion-text>
           <p>
             <ion-chip color="lightgray">
-              <ion-label class="ion-text-wrap">
+              <ion-label class="ion-text-wrap" color="platinum">
                 $ {{montoGeneral | number : '1.2-2'}}
               </ion-label>
             </ion-chip>
@@ -21,7 +21,7 @@
         </ion-label>
       </ion-col>
       <ion-col size="6" class="ion-text-end">
-        <ion-button color="platinum" size="small">
+        <ion-button color="platinum" size="small" routerLink="/loans">
           <span>Añadir más</span>
           <ion-icon name="add" color="primary" slot="end"></ion-icon>
         </ion-button>
@@ -30,17 +30,22 @@
 
     <div class="ion-margin-top"><br></div>
     <ion-list>
-      <!-- <ion-list-header>
-        <ion-label>RECENT TRANSACTIONS</ion-label>
-      </ion-list-header> -->
       <ion-item lines="none" *ngFor="let item of loans">
-        <!-- <ion-icon slot="start" name="cash" color="primary"></ion-icon> -->
         <ion-label size="large" class="ion-text-wrap">
           <b>Préstamo por {{item.prestamo}}</b>
           <p>
             <ion-text style="font-size: 1.33em;" color="primary">Valor de cada cuota: {{item?.cuotaPago | currency: 'USD'}}</ion-text><br>
             Interes Anual: {{item?.interes | number : '1.2-2'}} % <br>
             Num Cuotas: {{item?.numCuotas}} con frecuencia de pago: {{item?.frecuencia}} <br>
+            <ion-text>
+              Estado: 
+            <ng-container class="ion-margin-top ion-align-self-center">
+              <ion-badge *ngIf="item?.estado == 'P'" color="medium">Pendiente</ion-badge>
+              <ion-badge *ngIf="item?.estado == 'A'" color="success">Aprobado</ion-badge>
+              <ion-badge *ngIf="item?.estado == 'R'" color="danger">Rechazado</ion-badge>
+            </ng-container>
+            </ion-text> 
+            
           </p>
         </ion-label>
         <ion-text slot="end" color="nigth">{{item.monto | currency: 'USD'}}</ion-text>

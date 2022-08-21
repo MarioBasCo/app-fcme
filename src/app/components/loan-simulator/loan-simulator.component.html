@@ -1,0 +1,87 @@
+<div class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="calcular()" id="form-pro">
+    <div class="ion-text-center titulo">
+      <h4>Simulador de Préstamos</h4>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-align-self-center">
+          <div>Cantidad que Necesita</div>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="platinum" class="item-form">
+            <ion-input type="number" inputmode="numeric" name="amount" formControlName="amount"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4" class="ion-align-self-center">
+          <div>Tipo de Préstamo</div>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="platinum" class="item-form">
+            <ion-select placeholder="Tipo de Préstamo" interface="popover" name="loan" formControlName="loan">
+              <ion-select-option *ngFor="let loan of loans" [value]="loan.idTipoPrestamo">{{loan.descripcion}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4" class="ion-align-self-center">
+          <div>Frecuencia de Pago</div>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="platinum" class="item-form">
+            <ion-select placeholder="Frecuencia de Pago" interface="popover" name="frequency" formControlName="frequency">
+              <ion-select-option *ngFor="let fre of frequency" [value]="fre.idFrecuencia">{{fre.descripcion}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-align-self-center">
+          <div>Número de Cuotas</div>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none" color="platinum" class="item-form">
+            <ion-input type="number" inputmode="numeric" name="share" formControlName="share"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="ion-margin-top">
+      <ion-button color="night" expand="block" type="submit" [disabled]="!form.valid">
+        <ion-label>Calcular</ion-label>
+      </ion-button>
+    </div>
+  </form>
+
+  <div *ngIf="tableLoan.length > 0" class="ion-margin-top">
+    <h3 class="ion-text-center">Listado de Cuotas</h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto" class="ion-text-center"><b>N°</b></ion-col>
+        <ion-col class="ion-text-center"><b>CUOTA</b></ion-col>
+        <ion-col class="ion-text-center"><b>APORTE</b></ion-col>
+        <ion-col class="ion-text-center"><b>INTERES</b></ion-col>
+        <ion-col class="ion-text-center"><b>SALDO</b></ion-col>
+      </ion-row>
+  
+      <ion-row *ngFor="let obj of tableLoan; let i = index;">
+        <ion-col size="auto" class="ion-text-end">{{i+1}}</ion-col>
+        <ion-col class="ion-text-end">{{obj.cuota | currency: 'USD'}}</ion-col>
+        <ion-col class="ion-text-end">{{obj.aporte | currency: 'USD'}}</ion-col>
+        <ion-col class="ion-text-end">{{obj.interes | currency: 'USD'}}</ion-col>
+        <ion-col class="ion-text-end">{{obj.saldo | currency: 'USD'}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="ion-margin-top ion-margin-horizontal">
+      <ion-button id="open-modal" expand="block" color="gray" (click)="openModalForm()">Solicitar</ion-button>
+    </div>
+  </div>
+</div>

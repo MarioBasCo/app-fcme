@@ -18,13 +18,28 @@ export class LoanService {
     return this.http.get<any>(url);
   }
 
+  getLoansAdmin(){
+    const url = this.path_url + '/prestamos';
+    return this.http.get<any>(url);
+  }
+
   createLoan(data: any){
     const url = this.path_url + '/prestamo';
-    return this.http.post<any>(url, this.serUtil.objectToFormData(data));
+    return this.http.post<any>(url, data);
   }
 
   getLoanById(id: any){
     const url = this.path_url + '/prestamocliente/' + id;
     return this.http.get<any>(url);
+  }
+
+  rejectLoan(id: any, data: any) {
+    const url = this.path_url + '/rechazarprestamo/' + id;
+    return this.http.post<any>(url, this.serUtil.objectToFormData(data));
+  }
+
+  approveLoan(id: any, data: any) {
+    const url = this.path_url + '/aprobarprestamo/' + id;
+    return this.http.post<any>(url, this.serUtil.objectToFormData(data));
   }
 }

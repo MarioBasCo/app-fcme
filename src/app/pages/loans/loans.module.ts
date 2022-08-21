@@ -1,5 +1,5 @@
-import { ApplyLoanModule } from './../../components/apply-loan/apply-loan.module';
-import { ApplyLoanComponent } from './../../components/apply-loan/apply-loan.component';
+import { LoanListModule } from './../../components/loan-list/loan-list.module';
+import { LoanSimulatorModule } from './../../components/loan-simulator/loan-simulator.module';
 import { HeaderModule } from './../../components/header/header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,8 @@ import { LoansPage } from './loans.page';
     FormsModule,
     IonicModule,
     HeaderModule,
-    ApplyLoanModule,
+    LoanSimulatorModule,
+    LoanListModule,
     ReactiveFormsModule,
     LoansPageRoutingModule
   ],

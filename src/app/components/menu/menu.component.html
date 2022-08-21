@@ -21,14 +21,14 @@
         </ion-item>
       </ion-menu-toggle>
 
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="perfil == 2">
         <ion-item routerDirection="root" routerLink="/requests" routerLinkActive="selected">
           <ion-icon slot="start" name="folder-open" color="gray"></ion-icon>
           <ion-label>Mis Solicitudes</ion-label>
         </ion-item>
       </ion-menu-toggle>
 
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="perfil == 2">
         <ion-item routerDirection="root" routerLink="/receipts" routerLinkActive="selected">
           <ion-icon slot="start" name="receipt" color="gray"></ion-icon>
           <ion-label>Pagos y Recibos</ion-label>

@@ -1,0 +1,79 @@
+<ion-item-divider class="segment ion-no-margin" lines="none" sticky>
+  <ion-segment scrollable mode="md" [value]="selectId" [(ngModel)]="selectId" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="pendientes" layout="icon-start" id="pendientes">
+      <ion-icon name="stopwatch"></ion-icon>
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="revisados" layout="icon-start" id="revisados">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      <ion-label>Revisados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-item-divider>
+
+<div class="ion-padding">
+  <ion-card *ngFor="let item of loans" class="card">
+    <ion-card-content>
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-label>
+          <h3 class="ion-text-center">Datos del Cliente</h3>
+          <p>
+            <b>Cedula: </b>{{item.cedula}}<br>
+            <b>Nombre: </b>{{item.nombres + " " + item.apellidos}}<br>
+            <b>Correo: </b>{{item.email}}<br>
+            <b>Celular: </b>{{item.telefono}}<br>
+          </p>
+
+          <h3 class="ion-text-center">Datos de la Solicitud</h3>
+          <p>
+            <b>Monto: </b>{{item.monto | currency: 'USD'}}<br>
+            <b>Motivo: </b>{{item.prestamo}}<br>
+            <b>N° de Cuotas: </b>{{item.numCuotas}}<br>
+            <b>Monto de Cuota: </b>{{item.cuotaPago | currency: 'USD'}}<br>
+            <b>Frecuencia de Pago: </b>{{item.frecuencia}}<br>
+            <b>Fecha de solicitud: </b>{{item.fechaSolicitud}}<br>
+            <span *ngIf="item.estado != 'P'"><b>Estado: </b>
+              <ng-container class="ion-margin-top ion-align-self-center">
+                <ion-badge *ngIf="item?.estado == 'P'" color="medium">Pendiente</ion-badge>
+                <ion-badge *ngIf="item?.estado == 'A'" color="success">Aprobado</ion-badge>
+                <ion-badge *ngIf="item?.estado == 'R'" color="danger">Rechazado</ion-badge>
+              </ng-container>
+              <br>
+            </span>
+          </p>
+          <ng-container *ngIf="item.estado == 'P'">
+            <h3 class="ion-text-center">Requisitos</h3>
+            <p>
+              <ion-item lines="none" class="ion-no-padding">
+                <small>Cedula Ciudadania</small>
+                <ion-button slot="end" (click)="openModalViewDoc(item.pdfCedula)">Ver</ion-button>
+              </ion-item>
+              <ion-item lines="none" class="ion-no-padding">
+                <small>Planilla de Servicios</small>
+                <ion-button slot="end" (click)="openModalViewDoc(item.pdfPlanilla)">Ver</ion-button>
+              </ion-item>
+            </p>
+          </ng-container>
+        </ion-label>
+      </ion-item>
+
+      <ion-grid *ngIf="item.estado == 'P'">
+        <!-- <ion-row>
+          <ion-col>
+            <ion-textarea placeholder="Observaciones" style="border-radius: 10px; border: 1px solid black;">
+
+            </ion-textarea>
+          </ion-col>
+        </ion-row> -->
+        <ion-row>
+          <ion-col>
+            <ion-button color="night" expand="block" (click)="aprobarCredito(item)">Aprobar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="gray" expand="block" (click)="rechazarCredito(item)">Rechazar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</div>

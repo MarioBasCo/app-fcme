@@ -1,0 +1,21 @@
+.segment {
+    --background: var(--ion-color-gray) !important;
+    width: 100%;
+
+    ion-segment {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ion-segment-button {
+            color: #fff;
+            --indicator-color: var(--ion-color-platinum) !important;
+        }
+    }
+}
+
+.card {
+    color: black;
+}
+

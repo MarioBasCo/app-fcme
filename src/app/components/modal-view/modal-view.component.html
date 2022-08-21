@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="night">
+    <ion-title>Vista de Requisitos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item lines="none" style="width: 100%;">
+    <ion-label>Zoom</ion-label>
+    <ion-range slot="end" [pin]="true" mode="ios" [pinFormatter]="pinFormatter"  (ionChange)="onIonChange($event)"></ion-range>
+  </ion-item>
+  
+  <pdf-viewer [src]="pdfSrc"
+              [render-text]="true"
+              [original-size]="false"
+              [zoom-scale]="'page-width'"
+              [zoom]="zoomView"
+              [show-all]="true"
+              [autoresize]="true"
+              style="width: 400px; height: 500px"
+  ></pdf-viewer>
+</ion-content>

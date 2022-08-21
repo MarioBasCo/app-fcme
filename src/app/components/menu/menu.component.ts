@@ -1,3 +1,4 @@
+import { LstorageService } from './../../services/lstorage.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
@@ -11,13 +12,17 @@ export class MenuComponent implements OnInit {
   optionsMenu: any[] = [];
   mostrarOpciones: boolean = true;
   user: any;
+  perfil: number;
 
   constructor(
     private alertCtrl: AlertController,
-    private router: Router
+    private router: Router,
+    private serStorage: LstorageService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.perfil = this.serStorage.get("user").perfil;
+  }
 
   cerrarSesion() {
     this.alertCtrl.create({

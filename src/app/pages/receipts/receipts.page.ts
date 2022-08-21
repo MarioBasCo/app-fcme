@@ -21,6 +21,7 @@ export class ReceiptsPage implements OnInit {
     this.serPay.getPagosByIdUser(id_usuario).subscribe(resp => {
       if (resp.status) {
         this.mispagos = resp.data;
+        this.mispagos = this.mispagos.filter(d => d.estado == 'A');
       }
     })
   }

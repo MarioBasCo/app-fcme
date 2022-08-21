@@ -4,7 +4,7 @@
     <ion-item>
       <ion-select interface="action-sheet" placeholder="Seleccione el préstamo" cancelText="Cancelar" okText="Aceptar"
         (ionChange)="cargarCuotas($event)">
-        <ion-select-option *ngFor="let item of mispagos;" [value]="item.idPrestamo">Prestamo del {{item.fechaSolicitud}}
+        <ion-select-option *ngFor="let item of mispagos;" [value]="item.idPrestamo">Prestamo del {{item.fechaSolicitud | date: 'dd/MM/yyyy'}}
           &nbsp;
           {{item.monto | currency: 'USD' }}
         </ion-select-option>
@@ -23,11 +23,13 @@
           <ion-label size="large" class="ion-text-wrap">
             <b>N° Cuota: {{i+1}}</b>
             <p>
+              <span>{{item.fechaPago | date: 'dd/MM/yyyy'}}</span><br>
               <span style="color: green;">+ {{item?.aporte}}</span> &nbsp; <span style="color: red;">-
                 {{item?.interes}}</span>
             </p>
           </ion-label>
           <ion-text slot="end" color="gray">$ {{item?.saldo | number : '1.2-2'}}</ion-text>
+          
         </ion-item>
 
       </div>

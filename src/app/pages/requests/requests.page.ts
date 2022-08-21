@@ -28,6 +28,6 @@ export class RequestsPage implements OnInit {
   }
 
   montoPrestado() {
-    return this.loans.map(d=> d.monto).reduce((a,b) => a +b);
+    return this.loans.filter(d=> d.estado == 'A').map(d => Number (d.monto)).reduce((a, b) => a + b, 0);
   }
 }
